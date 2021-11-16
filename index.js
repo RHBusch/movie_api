@@ -1,9 +1,10 @@
-const express = require('express'),
-    morgan = require('morgan');
+const express = require('express'), // Importing express into package. 
+    morgan = require('morgan'); // Importing morgan into package. 
 
 
-const app = express ();
+const app = express (); 
 
+//Creating an array of top movies. 
 let topMovies = [
     {
       title: 'The Big Sick'
@@ -46,22 +47,25 @@ let topMovies = [
     },
 ]
 
+//Routing requests via /movies to the top movies json. 
 app.get('/movies',(req,res)=>{
 res.json(topMovies)
 });
 
 app.get('/',(req,res)=>{
     res.send('What would Ted Lasso do?')
-    });
+    }); // Creating endpoint / with textual response. 
 
-app.use (morgan('common'));
-app.use (express.static('public'));
+app.use (morgan('common')); //Using morgan middleware to log requests. 
+app.use (express.static('public')); // Routing static file requests to the public folder. 
 
+//Creating an error doce if a response fails. 
 app.use ((err,req,res,next) => {
     console.error (err.stack);
     res.status (500).send('Something is wrong here :(');
 });
 
+//Logging a message to the console when port 8080 is accessed. 
 app.listen(8080, () =>{
     console.log('Hey! FYI... This app is listening on port 8080...');
   });
