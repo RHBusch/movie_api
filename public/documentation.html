@@ -20,20 +20,71 @@
         <th>URL</th>
         <th>Response</th>
       </tr>
+
     </thead>
     
     <tbody>
   
       <tr>
           <td> Return all movies to user</td>
-          <td><GET/td>
+          <td>GET</td>
           <td>'/movies'</td>  
           <td>All movies in database are returned as an array. </td>
 
       </tr>
+          <td>Return data about a single movie</td>
+          <td>GET</td>
+          <td>'/movies/:title' </td>
+          <td>A single movie and its data is returned to a user based on its title.</td>
 
       <tr>
-
+        <td>Return movies within a specific genre.</td>
+        <td>GET</td>
+        <td>'/movies/:genre'</td>
+        <td>All movies within a specific genre are returned to a user.</td>
       </tr>
+
+      <tr>
+        <td>Return data about a specific director by name.</td>
+        <td>GET</td>
+        <td>'/movies/:director'</td>
+        <td>Movies with a specific director are returned to a user.</td>
+      </tr>
+
+      <tr>
+        <td>Allow new users to register.</td>
+        <td>POST</td>
+        <td>'/users'</td>
+        <td>...</td>
+      </tr>
+
+      <tr>
+        <td>Allow users to update their username.</td>
+        <td>PUT</td>
+        <td>'/users/:username'</td>
+        <td>...</td>
+      </tr>
+
+      <tr>
+        <td>Allow users to add a movie to their list of favorites.</td>
+        <td>POST</td>
+        <td>'/users/add/:movieTitle'</td>
+        <td>...</td>
+      </tr>
+
+      <tr>
+        <td>Allow users to remove a movie to their list of favorites.</td>
+        <td>DELETE</td>
+        <td>'/users/remove/:movieTitle'</td>
+        <td>...</td>
+      </tr>
+
+      <tr>
+        <td>Allow users to deregister.</td>
+        <td>DELETE</td>
+        <td>'/users/remove/:username'</td>
+        <td>...</td>
+      </tr>
+
     </tbody>
   </table>
