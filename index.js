@@ -50,21 +50,10 @@ let topMovies = [
 app.use (morgan('common')); //Using morgan middleware to log requests. 
 app.use (express.static('public')); // Routing static file requests to the public folder. 
 
-//Creating an error doce if a response fails. 
-app.use ((err,req,res,next) => {
-    console.error (err.stack);
-    res.status (500).send('Something is wrong here :(');
-});
-
-//Logging a message to the console when port 8080 is accessed. 
-app.listen(8080, () =>{
-    console.log('Hey! FYI... This app is listening on port 8080...');
-  });
-
 //Routing requests via /movies to the top movies json. 
 app.get('/movies',(req,res)=>{
-    res.json(topMovies)
-    });
+   res.json(topMovies)
+});
    
 //Routing requests for a single movie. 
 
@@ -109,11 +98,24 @@ app.get('/movies',(req,res)=>{
   });
 
   //Routing a request to delete a user from the database. 
-  
-  app.delete('/users/remove/:username',(req,res) =>{
+
+  app.delete('/users/remv/:username',(req,res) =>{
       res.send ('Successful DELETE request removing a user from the database.')
   });
 
+
+ //Potentially irrelevant code below? 
+
+//Creating an error doce if a response fails. 
+app.use ((err,req,res,next) => {
+    console.error (err.stack);
+    res.status (500).send('Something is wrong here :(');
+});
+
+//Logging a message to the console when port 8080 is accessed. 
+app.listen(8080, () =>{
+    console.log('Hey! FYI... This app is listening on port 8080...');
+  });
 
     app.get('/',(req,res)=>{
         res.send('What would Ted Lasso do?')
