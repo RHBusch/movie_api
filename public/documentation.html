@@ -22,68 +22,67 @@
       </tr>
 
     </thead>
-    
+
     <tbody>
   
       <tr>
           <td> Return all movies to user</td>
           <td>GET</td>
           <td>'/movies'</td>  
-          <td>All movies in database are returned as an array. </td>
+          <td> A JSON object is returned to the user including all movies in an array. </td>
 
       </tr>
           <td>Return data about a single movie</td>
           <td>GET</td>
           <td>'/movies/:title' </td>
-          <td>A single movie and its data is returned to a user based on its title.</td>
-
+          <td>A JSON object is returned to the user based on the title paramter included in the url</td>
       <tr>
         <td>Return movies within a specific genre.</td>
         <td>GET</td>
         <td>'/movies/:genre'</td>
-        <td>All movies within a specific genre are returned to a user.</td>
+        <td>A JSON object is returned including all movies within a specified genre based on the parameter in the url.</td>
       </tr>
 
       <tr>
         <td>Return data about a specific director by name.</td>
         <td>GET</td>
         <td>'/movies/:director'</td>
-        <td>Movies with a specific director are returned to a user.</td>
+        <td> A JSON object is returned including all Movies with a specific director based on the parameter in the url.</td>
       </tr>
 
       <tr>
         <td>Allow new users to register.</td>
         <td>POST</td>
         <td>'/users'</td>
-        <td>...</td>
+        <td>Creating a JSON object holding data about the newly registered user. </td>
       </tr>
 
       <tr>
         <td>Allow users to update their username.</td>
         <td>PUT</td>
         <td>'/users/:username'</td>
-        <td>...</td>
+        <td>Updating a JSON object holding data about an existing user.</td>
       </tr>
 
       <tr>
         <td>Allow users to add a movie to their list of favorites.</td>
         <td>POST</td>
         <td>'/users/add/:movieTitle'</td>
-        <td>...</td>
+        <td>Creating a JSON object based on the added movie and returning confirmation text.  </td>
       </tr>
 
       <tr>
         <td>Allow users to remove a movie to their list of favorites.</td>
         <td>DELETE</td>
         <td>'/users/remove/:movieTitle'</td>
-        <td>...</td>
+        <td>Removing a JSON object based on the deleted movie in the parameter and returning confirmation text.</td>
       </tr>
 
       <tr>
         <td>Allow users to deregister.</td>
         <td>DELETE</td>
         <td>'/users/remove/:username'</td>
-        <td>...</td>
+        <td>Removing a JSON object holding data about an existing user and returning confirmation text. </td>
       </tr>
 
     </tbody>
