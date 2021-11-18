@@ -12,13 +12,14 @@
       Users will be able to sign up, update theirpersonal information, and create a list of their favorite movies. </p>
  </body>
   <table>
-
+<!--- Start by creating examples for each type of data -->
     <thead>
       <tr>
-        <th>Action</th>
         <th>Request</th>
+        <th>HTTP Method</th>
         <th>URL</th>
-        <th>Response</th>
+        <th>Request Body Data Format</th>
+        <th>Response Body Data Format</th>
       </tr>
 
     </thead>
@@ -29,17 +30,24 @@
           <td> Return all movies to user</td>
           <td>GET</td>
           <td>'/movies'</td>  
+          <td>N/A</td>
           <td> A JSON object is returned to the user including all movies in an array. </td>
 
       </tr>
           <td>Return data about a single movie</td>
           <td>GET</td>
           <td>'/movies/:title' </td>
-          <td>A JSON object is returned to the user based on the title paramter included in the url</td>
+          <td>N/A</td>
+          <td>A JSON object is returned to the user based on the title paramter included in the url. For example: <br>
+            
+
+          </td>
+
       <tr>
         <td>Return movies within a specific genre.</td>
         <td>GET</td>
         <td>'/movies/:genre'</td>
+        <td>N/A</td>
         <td>A JSON object is returned including all movies within a specified genre based on the parameter in the url.</td>
       </tr>
 
@@ -47,13 +55,15 @@
         <td>Return data about a specific director by name.</td>
         <td>GET</td>
         <td>'/movies/:director'</td>
+        <td>N/A</td>
         <td> A JSON object is returned including all Movies with a specific director based on the parameter in the url.</td>
       </tr>
 
       <tr>
-        <td>Allow new users to register.</td>
+        <td>Allow new users to register.</td> 
         <td>POST</td>
         <td>'/users'</td>
+        <td>###</td>
         <td>Creating a JSON object holding data about the newly registered user. </td>
       </tr>
 
@@ -61,6 +71,7 @@
         <td>Allow users to update their username.</td>
         <td>PUT</td>
         <td>'/users/:username'</td>
+        <td>###</td>
         <td>Updating a JSON object holding data about an existing user.</td>
       </tr>
 
@@ -68,13 +79,15 @@
         <td>Allow users to add a movie to their list of favorites.</td>
         <td>POST</td>
         <td>'/users/add/:movieTitle'</td>
+        <td>###</td>
         <td>Creating a JSON object based on the added movie and returning confirmation text.  </td>
       </tr>
 
       <tr>
-        <td>Allow users to remove a movie to their list of favorites.</td>
+        <td>Allow users to remove a movie from their list of favorites.</td>
         <td>DELETE</td>
         <td>'/users/remove/:movieTitle'</td>
+        <td>N/A</td>
         <td>Removing a JSON object based on the deleted movie in the parameter and returning confirmation text.</td>
       </tr>
 
@@ -82,6 +95,7 @@
         <td>Allow users to deregister.</td>
         <td>DELETE</td>
         <td>'/users/remove/:username'</td>
+        <td>N/A</td>
         <td>Removing a JSON object holding data about an existing user and returning confirmation text. </td>
       </tr>
 
