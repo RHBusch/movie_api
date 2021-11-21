@@ -22,7 +22,7 @@
         <th>Response Body Data Format</th>
       </tr>
 
-    </thead>x
+    </thead>
 
     <tbody>
   
@@ -94,18 +94,13 @@
         <td>Allow users to update their user info.</td>
         <td>PUT</td>
         <td>'/users/:username'</td>
-        <td>Creating a JSON object w/updated data from user. 
+        <td>Creating a JSON object w/ desired updated data and username as a confirmation from user. 
           <br>
           <code><strong>Example:</strong>
             <br>
             {
-              "_id":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d" <br>
-              "firstName": "Ted"<br>
-              "lastName": "Lasso"<br>
-              "Email": "TLasso21@gmail.com" <br>
               "username": "TLasso21" <br>
               "password": "Kansas2London"<br>
-              "favoriteMovies": []<br>
             }
           </code>
         </td>
@@ -114,8 +109,13 @@
         <code><strong>Example:</strong>
           <br>
           {
+            "_id":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d" <br>
+            "firstName": "Ted"<br>
+            "lastName": "Lasso"<br>
+            "Email": "TLasso21@gmail.com" <br>
             "username": "TLasso21" <br>
             "password": "Kansas2London"<br>
+            "favoriteMovies": []<br>
           }
         </code>
       </td>
@@ -125,16 +125,52 @@
         <td>Allow users to add a movie to their list of favorites.</td>
         <td>POST</td>
         <td>'/users/add/:movieTitle'</td>
-        <td>###</td>
-        <td>Creating a JSON object based on the added movie and returning confirmation text.  </td>
+        <td>JSON Object w/user information including new movies to add to their favorites.
+          <br>
+          <code><strong>Example:</strong>
+            <br>
+            {
+              "firstName": "Ted"<br>
+              "lastName": "Lasso"<br>
+              "Email": "TLasso21@gmail.com" <br>
+              "username": "TLasso21" <br>
+              "password": "Kansas2London"<br>
+              "favoriteMovies": ["Random Movie"]<br>
+            }
+          </code>
+        </td>
+        <td>Creating a JSON object based on the added movie and returning confirmation text.
+            <br>
+            <strong>Example:</strong>
+            <br>
+            <p> "Another favorite movie was successfully added to your list."</p>
+        </td>
       </tr>
 
       <tr>
         <td>Allow users to remove a movie from their list of favorites.</td>
         <td>DELETE</td>
         <td>'/users/remove/:movieTitle'</td>
-        <td>N/A</td>
-        <td>Removing a JSON object based on the deleted movie in the parameter and returning confirmation text.</td>
+        <td>
+          <br>
+          <code><strong>Example:</strong>
+            <br>
+          {
+            "_id":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d" <br>
+            "firstName": "Ted"<br>
+            "lastName": "Lasso"<br>
+            "Email": "TLasso21@gmail.com" <br>
+            "username": "TLasso21" <br>
+            "password": "Kansas2London"<br>
+            "favoriteMovies": []<br>
+          }
+        </td>
+        <td>Removing a JSON object based on the deleted movie in the parameter and returning confirmation text.
+          <br>
+            <strong>Example:</strong>
+            <br>
+            <p> "A movie was successfully deleted from your list."</p>
+        </td>
       </tr>
 
       <tr>
@@ -142,8 +178,12 @@
         <td>DELETE</td>
         <td>'/users/remove/:username'</td>
         <td>N/A</td>
-        <td>Removing a JSON object holding data about an existing user and returning confirmation text. </td>
+        <td>Removing a JSON object holding data about an existing user and returning confirmation text. 
+          <br>
+            <strong>Example:</strong>
+            <br>
+            <p> "You have successfully deregistered."</p>
+        </td>
       </tr>
-
     </tbody>
   </table>
