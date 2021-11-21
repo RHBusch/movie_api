@@ -117,6 +117,7 @@ app.listen(8080, () =>{
     console.log('Hey! FYI... This app is listening on port 8080...');
   });
 
+  //Showing a message when any files with / are requested. More of a test than anything else. 
     app.get('/',(req,res)=>{
         res.send('What would Ted Lasso do?')
         }); // Creating endpoint / with textual response. 
