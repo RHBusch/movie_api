@@ -22,7 +22,7 @@
         <th>Response Body Data Format</th>
       </tr>
 
-    </thead>
+    </thead>x
 
     <tbody>
   
@@ -30,24 +30,21 @@
           <td> Return all movies to user</td>
           <td>GET</td>
           <td>'/movies'</td>  
-          <td>N/A</td>
+          <td>N/A url parameter doesn't require example.</td>
           <td> A JSON object is returned to the user including all movies in an array. </td>
 
       </tr>
           <td>Return data about a single movie</td>
           <td>GET</td>
           <td>'/movies/:title' </td>
-          <td>N/A</td>
-          <td>A JSON object is returned to the user based on the title paramter included in the url. For example: <br>
-            
-
-          </td>
+          <td>N/A Url parameter doesn't require example.</td>
+          <td>A JSON object is returned to the user based on the title parameter included in the url.</td>
 
       <tr>
         <td>Return movies within a specific genre.</td>
         <td>GET</td>
         <td>'/movies/:genre'</td>
-        <td>N/A</td>
+        <td>N/A Url parameter doesn't require example.</td>
         <td>A JSON object is returned including all movies within a specified genre based on the parameter in the url.</td>
       </tr>
 
@@ -55,24 +52,73 @@
         <td>Return data about a specific director by name.</td>
         <td>GET</td>
         <td>'/movies/:director'</td>
-        <td>N/A</td>
-        <td> A JSON object is returned including all Movies with a specific director based on the parameter in the url.</td>
+        <td>N/A Url parameter doesn't require example.</td>
+        <td> A JSON object is returned including all movies with a specific director based on the parameter in the url.</td>
       </tr>
 
       <tr>
         <td>Allow new users to register.</td> 
         <td>POST</td>
         <td>'/users'</td>
-        <td>###</td>
-        <td>Creating a JSON object holding data about the newly registered user. </td>
+        <td> A JSON object w/the data of a new user.
+            <br>
+            <code><strong>Example:</strong>
+              <br>
+              {
+                "firstName": "Ted"<br>
+                "lastName": "Lasso"<br>
+                "Email": "TLasso21@gmail.com" <br>
+                "username": "TLasso21" <br>
+                "password": "HateNate21"<br>
+              }
+            </code>
+        </td>
+        <td>Creating a JSON object holding data about the newly registered user. 
+          <br>
+            <code><strong>Example:</strong>
+              <br>
+              {
+                "_id":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d" <!-- Called by uuid module and created for each user automatically in response-->
+                "firstName": "Ted"<br>
+                "lastName": "Lasso"<br>
+                "Email": "TLasso21@gmail.com" <br>
+                "username": "TLasso21" <br>
+                "password": "HateNate21"<br>
+                "favoriteMovies": []<br> <!-- Empty array because no favorite movies have been defined yet-->
+              }
+            </code>
+        </td>
       </tr>
 
       <tr>
-        <td>Allow users to update their username.</td>
+        <td>Allow users to update their user info.</td>
         <td>PUT</td>
         <td>'/users/:username'</td>
-        <td>###</td>
-        <td>Updating a JSON object holding data about an existing user.</td>
+        <td>Creating a JSON object w/updated data from user. 
+          <br>
+          <code><strong>Example:</strong>
+            <br>
+            {
+              "_id":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d" <br>
+              "firstName": "Ted"<br>
+              "lastName": "Lasso"<br>
+              "Email": "TLasso21@gmail.com" <br>
+              "username": "TLasso21" <br>
+              "password": "Kansas2London"<br>
+              "favoriteMovies": []<br>
+            }
+          </code>
+        </td>
+        <td>Updated JSON object holding new data about an existing user.
+        <br>
+        <code><strong>Example:</strong>
+          <br>
+          {
+            "username": "TLasso21" <br>
+            "password": "Kansas2London"<br>
+          }
+        </code>
+      </td>
       </tr>
 
       <tr>
