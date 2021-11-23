@@ -52,7 +52,7 @@ app.use (express.static('public')); // Routing static file requests to the publi
 
 //Routing requests via /movies to the top movies json. 
 app.get('/movies',(req,res)=>{
-   res.json(topMovies)
+   res.status(201).json(topMovies) //Cannot use this line of code to send status. Need to write separate requests.
 });
    
 //Routing requests for a single movie. 
