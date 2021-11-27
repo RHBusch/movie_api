@@ -47,9 +47,9 @@ Description: "While Frodo and Sam edge closer to Mordor with the help of the shi
   Name: "Fantasty",
   Description: "Fantasy film is a genre that incorporates imaginative and fantastic themes. These themes usually involve magic, supernatural events, or fantasy worlds."
   },
-    Ratings: {
+  Ratings:{
       IMDB: "8.7/10",
-      Rotten Tomatoes: "95%"
+      RottenTomatoes: "95/100", -- The terminal will not take two words separated... --
        },
   Director:{
     Name: "Peter Jackson",
@@ -60,7 +60,8 @@ Description: "While Frodo and Sam edge closer to Mordor with the help of the shi
  ImagePath:"twotowers.png",
    Featured: true}
 
-
+IMDB: "8.7/10",
+ Rotten Tomatoes: "95%"
    {
   Title: "Silence of the Lambs",
   Description: "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
@@ -77,3 +78,8 @@ Description: "While Frodo and Sam edge closer to Mordor with the help of the shi
   ImagePath: "silenceofthelambs.png",
   Featured: true
 }
+
+Ratings: {
+      IMDB: "8.7/10",
+      Rotten Tomatoes: "95%"
+       },
