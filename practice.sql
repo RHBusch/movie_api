@@ -42,6 +42,8 @@ SELECT Title, Description, DirectorID
 ----- Correct Code for inserting into Mongo DB ------ The terminal will not take two words separated RottenTomatoes. 
 --- Update movie1 to have % for tomatoes 
 --- Figure out image stuff + adjust naming conventions
+--- Fix date tag on user1
+---Gotta fix fantasty...spelling
 
   var movie1 = {
 Title: "Lord of the Rings and the Two Towers",
@@ -260,6 +262,112 @@ Description: "A paraplegic Marine dispatched to the moon Pandora on a unique mis
    Featured: true}
 
    -------------------------------  
+var testuser ={
+  Username: "Steve211",
+  Password: "PastWord111",
+  Email: "steve211@gmail.com",
+  Birthday:"1990-03-29",
+  FavoriteMovies:[
+    ObjectId("61a369f64c95362c52701d75")
+    ]
+  }
+
+
+{
+  _id: 3424324,
+  Username: "davidcohen2580",
+  Password: "test123",
+  Email:" davidcohen2580@gmail.com",
+  Birthday: "09/10/1988",
+  FavoriteMovies: [ 3424324, 43234, 23443 ]
+}
 
 
 
+
+Favorite Movies: [
+    ObjectId("61a369f64c95362c52701d75")
+    ]
+
+Actors: [
+    ObjectId("f56dgkof89adfdfadsfdsfdasf"),
+    ObjectId("5c36das45daaw4f9a22917245")
+  ],
+db.movies.findOne( { _id: ObjectId("5c3bd189515a081b363cb7e4") })
+
+
+
+
+
+----------------------
+var user1 ={
+  Username: "Steve211",
+  Password: "PastWord111",
+  Email: "steve211@gmail.com",
+  Birthday:"1990-03-29",
+  FavoriteMovies:[
+    ObjectId("61a369f64c95362c52701d75"),
+    ObjectId("61a36ba54c95362c52701d76")]
+  }
+------------------------
+var user2 ={
+  Username: "Nora222",
+  Password: "PastWord222",
+  Email: "Nora222@gmail.com",
+  Birthday: new Date ("1988-04-30"),
+  FavoriteMovies:[
+    ObjectId("61a24e9d4c95362c52701d74"),
+    ObjectId("61a378274c95362c52701d7d")]
+  }
+ ------------------------- 
+
+var user3 ={
+  Username: "Juan333",
+  Password: "PastWord444",
+  Email: "Juan333@gmail.com",
+  Birthday: new Date ("1995-08-01"),
+  FavoriteMovies:[
+    ObjectId("61a372934c95362c52701d7b"),
+    ObjectId("61a371234c95362c52701d7a")]
+  }
+---------------------------
+
+var user4 ={
+  Username: "Fatima444",
+  Password: "PastWord555",
+  Email: "Fatima444@gmail.com",
+  Birthday: new Date ("1973-12-29"),
+  FavoriteMovies:[
+    ObjectId("61a371234c95362c52701d7a"),
+    ObjectId("61a36fee4c95362c52701d79")]
+  }
+-------------------------------
+var user5 ={
+  Username: "Harley101",
+  Password: "PastWord1000",
+  Email: "Harley101@gmail.com",
+  Birthday: new Date ("1999-10-01"),
+  FavoriteMovies:[
+    ObjectId("61a36ee44c95362c52701d78"),
+    ObjectId("61a372934c95362c52701d7b")]
+  }
+
+  -------------------------
+  var user6 ={
+    Username:"DeleteUserTest",
+    Password: "skfjskjsdlkjf",
+    Email: "DeleteMe@Gmail.com",
+    Birthday: new Date ("1976-11-23"),
+    FavoriteMovies:[
+    ObjectId("61a36ee44c95362c52701d78"),
+    ObjectId("61a372934c95362c52701d7b")]
+  }
+  
+
+
+db.inventory.find( { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } } ] } )
+
+
+-----finds a movie based on genre and director name 
+db.movies.find({$and:[{"Genre.Name":"Fantasty"},{"Director.Name":"Alfonso Cuaron"
+}]})
