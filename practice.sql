@@ -371,3 +371,29 @@ db.inventory.find( { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true 
 -----finds a movie based on genre and director name 
 db.movies.find({$and:[{"Genre.Name":"Fantasty"},{"Director.Name":"Alfonso Cuaron"
 }]})
+
+-----updates a movie description
+
+db.movies.update(
+  {_id: ObjectId("61a36ee44c95362c52701d78")},
+  {$set:{Description:"Scott has been a case of arrested development since his firefighter dad died. He spends his days smoking weed and dreaming of being a tattoo artist until events force him to grapple with his grief and take his first steps forward in life with no shortage of surprise twists." }}
+)
+
+------updates a director's bio across multiple movies 
+
+
+db.movies.updateMany({"Director.Name":"Judd Apatow"}),
+... {$set:{"Director.Bio":"Judd Apatow is an American producer, writer, director, actor and stand-up comedian. Major hits include: The Big Sick, Superbad, and the 40 Year Old Virgin."
+}}
+
+--------Update
+
+
+
+
+----- Correct Code for inserting into Mongo DB ------ The terminal will not take two words separated RottenTomatoes. 
+--- Update movie1 to have % for tomatoes 
+--- Figure out image stuff + adjust naming conventions
+--- Fix date tag on user1
+---Gotta fix fantasty...spelling
+--- Updated bio King of staten island? 
