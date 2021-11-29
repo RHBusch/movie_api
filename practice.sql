@@ -398,6 +398,11 @@ db.users.update(
   { $push: { FavoriteMovies: ObjectId("5c3bd189515a081b363cb7e4") } }
 )
 
+-------delete
+db.[collectionName].remove([condition])
+
+db.users.remove({Username:"DeleteUserTest"
+})
 
 
 
