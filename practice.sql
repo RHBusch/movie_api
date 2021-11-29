@@ -381,12 +381,22 @@ db.movies.update(
 
 ------updates a director's bio across multiple movies 
 
-
 db.movies.updateMany({"Director.Name":"Judd Apatow"}),
 ... {$set:{"Director.Bio":"Judd Apatow is an American producer, writer, director, actor and stand-up comedian. Major hits include: The Big Sick, Superbad, and the 40 Year Old Virgin."
 }}
 
 --------Update
+
+db.users.update(
+  {Username: "Fatima444"},
+  {$push: {FavoriteMovies: ObjectId("61a372934c95362c52701d7b")}}
+)
+
+
+db.users.update(
+  { Username: "Lilly" },
+  { $push: { FavoriteMovies: ObjectId("5c3bd189515a081b363cb7e4") } }
+)
 
 
 
