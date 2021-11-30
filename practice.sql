@@ -404,11 +404,11 @@ db.[collectionName].remove([condition])
 db.users.remove({Username:"DeleteUserTest"
 })
 
-
+---- update movie data 
+db.movies.update({
+  Title:"Lord of the Rings and the Two Towers"},{$set:{"Ratings.RottenTomatoes":"95%"}})
 
 ----- Correct Code for inserting into Mongo DB ------ The terminal will not take two words separated RottenTomatoes. 
---- Update movie1 to have % for tomatoes 
+--- 
 --- Figure out image stuff + adjust naming conventions
---- Fix date tag on user1
----Gotta fix fantasty...spelling
---- Updated bio King of staten island? 
+--- 
