@@ -1,8 +1,20 @@
-const express = require('express'), // Importing express into package. 
-    morgan = require('morgan'); // Importing morgan into package. 
+const express = require('express'), // Importing express
+    morgan = require('morgan'), // Importing morgan 
+    bodyParser = require('body-parser'); //importing bodyParser 
+
+const mongoose = require ('mongoose'); //importing mongoose
+const Models = require ('./models.js');//importing models
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/myFlixDB',{useNewUrlParser: true,
+useUnifiedTopology: true})
+
 
 
 const app = express (); 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 //Creating an array of top movies. 
 let topMovies = [
@@ -76,8 +88,6 @@ app.get('/movies',(req,res)=>{
   //Routing the new user registration request 
 
   app.post('/users',(req,res) => {
-      res.send('Successful POST request creating a new user and adding their data.')
-  });
 
   //Routing the update username request
 
@@ -120,4 +130,5 @@ app.listen(8080, () =>{
   //Showing a message when any files with / are requested. More of a test than anything else. 
     app.get('/',(req,res)=>{
         res.send('What would Ted Lasso do?')
-        }); // Creating endpoint / with textual response. 
+        }); 
+    
