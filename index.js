@@ -16,49 +16,6 @@ const app = express ();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-//Creating an array of top movies. 
-let topMovies = [
-    {
-      title: 'The Big Sick'
-    },
-
-    {
-        title: 'Forrest Gump'  
-    },
-
-    {
-        title: 'Lord of the Rings'  
-    },
-
-    {
-        title: 'Slumdog Millionaire'  
-    },
-
-    {
-        title: 'Inside Out'  
-    },
-
-    {
-        title: 'Despicable Me'  
-    },
-
-    {
-        title: 'War Horse'  
-    },
-
-    {
-        title: 'Interstellar'  
-    },
-
-    {
-        title: 'Les Miserables'  
-    },
-
-    {
-        title: 'Step Brothers'  
-    },
-]
-
 app.use (morgan('common')); //Using morgan middleware to log requests. 
 app.use (express.static('public')); // Routing static file requests to the public folder. 
 
@@ -92,7 +49,7 @@ app.get('/movies',(req,res)=>{
           (user) =>{
               if(user){
                   return res.status(400).send(req.body.Username + 'already exists');
-              } else Users.create({
+              } else {Users.create({
                   Username: req.body.Username,
                   Password: req.body.Password, 
                   Email: req.body.Email,
@@ -102,8 +59,13 @@ app.get('/movies',(req,res)=>{
               ).catch((error) => {console.error(error);
                 res.status(500).send ('Error: ' + error);
             }) 
-          })
-        });
+          }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+        })
+    })
 
   //Routing the update username request
 
