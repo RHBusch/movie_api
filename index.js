@@ -1,9 +1,11 @@
+//Something is not connecting correctly with the new server code. 
+
 const express = require('express'), // Importing express
     morgan = require('morgan'), // Importing morgan 
-    bodyParser = require('body-parser'); //importing bodyParser 
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser'),//importing bodyParser 
+    Models = require('./models.js');
 
-const mongoose = require ('mongoose'); //importing mongoose
-const Models = require ('./models.js');//importing models
 const Movies = Models.Movie;
 const Users = Models.User;
 
@@ -19,28 +21,57 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use (morgan('common')); //Using morgan middleware to log requests. 
 app.use (express.static('public')); // Routing static file requests to the public folder. 
 
-//Routing requests via /movies to the top movies json. 
+//Routing requests for all movies. 
 app.get('/movies',(req,res)=>{
-   res.status(201).json(topMovies) //Cannot use this line of code to send status. Need to write separate requests.
+    Movies.find()
+    .then((movies) => {
+        res.status(201).json(movies);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: '+ err);
+    });
 });
    
 //Routing requests for a single movie. 
 
   app.get('/movies/:title',(req,res) =>{
-      res.send('Successful GET request returning data on the requested movie title.')
-  });
+      Movies.findOne({Title: req.params.Title})
+      .then((movies) =>{
+          res.json(movies);
+      })
+      .catch((err) =>{
+          console.error(err);
+          res.status(500).send('Error: ' + err);
+      });        
+      });
 
 //Routing requests for movies of a specific genre.
 
   app.get('/movies/:genre',(req,res) =>{
-      res.send('Successful GET request returning data included in the requested movie genre.')
+    Movies.findOne({"Genre.Name": req.params.Genre})//How to write this correctly?
+    .then((movies) =>{
+        res.json(movies);
+    })
+    .catch((err) =>{
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });  
   });
 
 //Routing reqeusts for movie data based on a single director. 
 
   app.get('/movies/:director',(req,res) => {
-      res.send('Successful GET request returning data based on the requested director.')
-  });
+    Movies.findOne({"Director.Name": req.params.Director})
+    .then((movies) =>{
+        res.json(movies);
+    })
+    .catch((err) =>{
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });  
+
+});
 
   //Routing the new user registration request 
 
@@ -70,13 +101,39 @@ app.get('/movies',(req,res)=>{
   //Routing the update username request
 
   app.put('/users/:username',(req,res) => {
-      res.send ('Successful PUT request updating a user ID.')
+    Users.findOneAndUpdate({Username: req.params.Username},{$set:
+        {
+            Username: req.body.Username,
+            Password: req.body.Password, 
+            Email: req.body.Email, 
+            Birthday: req.body.Birthday
+        }
+    },
+        {new: true},
+        (err, updatedUser) => {
+            if(err){
+                console.error(err);
+                res.status(500).send('Error: ' + err);
+            } else{res.json(updateUser);
+            }
+    }); 
   });
 
   //Routing request to add a movie to a user's list of favorites.
 
   app.post('/users/add/:movieTitle', (req,res) =>{
-      res.send('Successful POST request adding a movie to user\'s list of favorites.')
+      Users.findOneAndUpdate({Username: req.params.Username},{
+          $push: {FavoriteMovies: req.params.MovieID}
+      },
+      {new: true},
+      (err, updatedUser) => {
+          if (err) {
+              console.error(err);
+              res.status(500).send('Error:  ' + err);
+          } else{
+              res.json(updatedUser);
+          }
+      });
   });
 
   //Routing request to delete a movie from a user's list of favorites. 
@@ -88,8 +145,30 @@ app.get('/movies',(req,res)=>{
   //Routing a request to delete a user from the database. 
 
   app.delete('/users/remv/:username',(req,res) =>{
-      res.send ('Successful DELETE request removing a user from the database.')
-  });
+      Users.findOneAndRemove({Username: req.params.Username})
+        .then((user) => {
+            if (!user) {
+                res.status(400).send(req.params.Username + ' was not found.');
+            } else{res.status(200).send(req.params.Username +' was deleted.');
+            }
+        })
+        .catch((err) =>{
+            console.error(err);
+            res.status(500).send ('Error: '+ err);
+        }
+        )
+      });
+
+
+
+
+
+
+
+
+
+
+
 
 
  //Potentially irrelevant code below? 
