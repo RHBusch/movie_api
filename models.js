@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 
 //Establishing schema for the movie database.
+
 let movieSchema = mongoose.Schema({
     Title: {type: String, required:true},
     Description: {type: String, required:true},
@@ -17,7 +18,6 @@ let movieSchema = mongoose.Schema({
         IMDB: String,
         RottenTomatoes: String 
     },
-    Actors: [String],
     ImagePath: String, 
     Featured: Boolean
 });
