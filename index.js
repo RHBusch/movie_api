@@ -21,6 +21,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use (morgan('common')); //Using morgan middleware to log requests. 
 app.use (express.static('public')); // Routing static file requests to the public folder. 
 
+
+
 //Routing requests for all movies. 
 app.get('/movies',(req,res)=>{
     Movies.find()
@@ -35,10 +37,10 @@ app.get('/movies',(req,res)=>{
    
 //Routing requests for a single movie. 
 
-  app.get('/movies/:title',(req,res) =>{
+  app.get('/movies/:Title',(req,res) =>{
       Movies.findOne({Title: req.params.Title})
-      .then((movies) =>{
-          res.json(movies);
+      .then((movie) =>{
+          res.json(movie);
       })
       .catch((err) =>{
           console.error(err);
@@ -46,12 +48,13 @@ app.get('/movies',(req,res)=>{
       });        
       });
 
-//Routing requests for movies of a specific genre.
 
-  app.get('/movies/:genre',(req,res) =>{
-    Movies.findOne({"Genre.Name": req.params.Genre})//How to write this correctly?
-    .then((movies) =>{
-        res.json(movies);
+//Routing requests for movies of a specific genre. WORKING ON THIS
+
+  app.get('/movies/genre/:name',(req,res) =>{
+    Movies.find({"Genre.name": req.params.name})//How to write this correctly?
+    .then((genre) =>{
+        res.json(genre);
     })
     .catch((err) =>{
         console.error(err);
@@ -62,9 +65,9 @@ app.get('/movies',(req,res)=>{
 //Routing reqeusts for movie data based on a single director. 
 
   app.get('/movies/:director',(req,res) => {
-    Movies.findOne({"Director.Name": req.params.Director})
-    .then((movies) =>{
-        res.json(movies);
+    Movies.find({"Director.Name": req.params.Name})
+    .then((movie) =>{
+        res.json(movie);
     })
     .catch((err) =>{
         console.error(err);
@@ -159,7 +162,22 @@ app.get('/movies',(req,res)=>{
         )
       });
 
+//Routing request to delete a user by username. 
 
+app.delete('/users/:username', (req,res)=>{
+        Users.findOneAndRemove ({Username: req.params.Username})
+        .then((user) => {
+            if (!user){
+                res.status(400).send(req.params.Username ' was not found');
+            } else { 
+                res.status(200).send(req.params.Username ' was deleted.');
+            }
+        })
+        .catch((err) = {
+            console.error(err);
+            res.status(500).send('Error: ' + err)
+        })
+    })
 
 
 
