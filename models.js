@@ -33,10 +33,14 @@ let userSchema = mongoose.Schema({
     [{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 });
 
+//Assigning variables Movie/User to their respective schemas. 
+
 let Movie = mongoose.model('Movie', movieSchema);
 
 let User = mongoose.model('User', userSchema);
 
-module.exports.Movie = Movie;
+// Exporting modules for use in index.js
+
+module.exports.Movie = Movie; 
 module.exports.User = User;
 
