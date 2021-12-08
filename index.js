@@ -23,7 +23,7 @@ app.use (express.static('public')); // Routing static file requests to the publi
 
 
 
-//Routing requests for all movies. 
+//Routing requests for all movies. (WORKS CORRECTLY)
 app.get('/movies',(req,res)=>{
     Movies.find()
     .then((movies) => {
@@ -35,7 +35,7 @@ app.get('/movies',(req,res)=>{
     });
 });
    
-//Routing requests for a single movie. 
+//Routing requests for a single movie. (WORKS CORRECTLY) 
 
   app.get('/movies/:Title',(req,res) =>{
       Movies.findOne({Title: req.params.Title})
@@ -49,12 +49,12 @@ app.get('/movies',(req,res)=>{
       });
 
 
-//Routing requests for movies of a specific genre. WORKING ON THIS
+//Routing requests for movies of a specific genre. ***(IN PROGRESS)***
 
-  app.get('/movies/genre/:name',(req,res) =>{
-    Movies.find({"Genre.name": req.params.name})//How to write this correctly?
-    .then((genre) =>{
-        res.json(genre);
+  app.get('/movies/genre/:Name',(req,res) =>{
+    Movies.find({'Genre.Name': req.params.Name})
+    .then((genreType) =>{
+        res.json(genreType);
     })
     .catch((err) =>{
         console.error(err);
@@ -62,12 +62,12 @@ app.get('/movies',(req,res)=>{
     });  
   });
 
-//Routing reqeusts for movie data based on a single director. 
+//Routing reqeusts for movie data based on a single director. ***(IN PROGRESS)***
 
-  app.get('/movies/:director',(req,res) => {
+  app.get('/movies/director/:Name',(req,res) => {
     Movies.find({"Director.Name": req.params.Name})
-    .then((movie) =>{
-        res.json(movie);
+    .then((directorName) =>{
+        res.json(directorName);
     })
     .catch((err) =>{
         console.error(err);
@@ -76,7 +76,8 @@ app.get('/movies',(req,res)=>{
 
 });
 
-  //Routing the new user registration request 
+
+  //Routing the new user registration request. (WORKS CORRECTLY) 
 
   app.post('/users',(req,res) => {
       Users.findOne({Username: req.body.Username}).then(
@@ -101,7 +102,7 @@ app.get('/movies',(req,res)=>{
         })
     })
 
-  //Routing the update username request
+  //Routing the update username request. ***(IN PROGRESS)*** 
 
   app.put('/users/:username',(req,res) => {
     Users.findOneAndUpdate({Username: req.params.Username},{$set:
@@ -122,7 +123,7 @@ app.get('/movies',(req,res)=>{
     }); 
   });
 
-  //Routing request to add a movie to a user's list of favorites.
+  //Routing request to add a movie to a user's list of favorites. ***(IN PROGRESS)***
 
   app.post('/users/add/:movieTitle', (req,res) =>{
       Users.findOneAndUpdate({Username: req.params.Username},{
@@ -139,7 +140,7 @@ app.get('/movies',(req,res)=>{
       });
   });
 
-  //Routing request to delete a movie from a user's list of favorites. 
+  //Routing request to delete a movie from a user's list of favorites. ***(IN PROGRESS)***
 
   app.delete('/users/remove/:movieTitle', (req,res)=>{
       res.send('Successful DELETE request removing a movie from a user\'s list of favorites')
@@ -162,31 +163,22 @@ app.get('/movies',(req,res)=>{
         )
       });
 
-//Routing request to delete a user by username. 
+//Routing request to delete a user by username. ***(IN PROGRESS)***
 
-app.delete('/users/:username', (req,res)=>{
+/*app.delete('/users/:username', (req,res)=>{
         Users.findOneAndRemove ({Username: req.params.Username})
         .then((user) => {
             if (!user){
-                res.status(400).send(req.params.Username ' was not found');
+                res.status(400).send(req.params.Username );
             } else { 
-                res.status(200).send(req.params.Username ' was deleted.');
+                res.status(200).send(req.params.Username );
             }
         })
         .catch((err) = {
             console.error(err);
             res.status(500).send('Error: ' + err)
         })
-    })
-
-
-
-
-
-
-
-
-
+    })*/
 
 
  //Potentially irrelevant code below? 
