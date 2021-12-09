@@ -35,23 +35,23 @@
       </tr>
           <td>Return data about a single movie</td>
           <td>GET</td>
-          <td>'/movies/:title' </td>
-          <td>N/A Url parameter doesn't require example.</td>
+          <td>'/movies/:Title' </td>
+          <td>N/A url parameter doesn't require example.</td>
           <td>A JSON object is returned to the user based on the title parameter included in the url.</td>
 
       <tr>
         <td>Return movies within a specific genre.</td>
         <td>GET</td>
-        <td>'/movies/:genre'</td>
-        <td>N/A Url parameter doesn't require example.</td>
+        <td>'/movies/genre/:Name'</td>
+        <td>N/A url parameter doesn't require example.</td>
         <td>A JSON object is returned including all movies within a specified genre based on the parameter in the url.</td>
       </tr>
 
       <tr>
-        <td>Return data about a specific director by name.</td>
+        <td>Return movies from a specific director by name.</td>
         <td>GET</td>
-        <td>'/movies/:director'</td>
-        <td>N/A Url parameter doesn't require example.</td>
+        <td>'/movies/director/:Name'</td>
+        <td>N/A url parameter doesn't require example.</td>
         <td> A JSON object is returned including all movies with a specific director based on the parameter in the url.</td>
       </tr>
 
@@ -92,7 +92,7 @@
       <tr>
         <td>Allow users to update their user info.</td>
         <td>PUT</td>
-        <td>'/users/:username'</td>
+        <td>'/users/:Username'</td>
         <td>Creating a JSON object w/ desired updated data and username as a confirmation from user. 
           <br>
           <code><strong>Example:</strong>
@@ -123,7 +123,7 @@
       <tr>
         <td>Allow users to add a movie to their list of favorites.</td>
         <td>POST</td>
-        <td>'/users/add/:movieTitle'</td>
+        <td>'/users/:Username/movies/:MovieId'</td>
         <td>JSON Object w/user information including new movies to add to their favorites.
           <br>
           <code><strong>Example:</strong>
@@ -149,7 +149,7 @@
       <tr>
         <td>Allow users to remove a movie from their list of favorites.</td>
         <td>DELETE</td>
-        <td>'/users/remove/:movieTitle'</td>
+        <td>'/users/:Username/remvmovies/:MovieId'</td>
         <td>
           <br>
           <code><strong>Example:</strong>
@@ -175,7 +175,7 @@
       <tr>
         <td>Allow users to deregister.</td>
         <td>DELETE</td>
-        <td>'/users/remove/:username'</td>
+        <td>'/users/remv/:Username'</td>
         <td>N/A</td>
         <td>Removing a JSON object holding data about an existing user and returning confirmation text. 
           <br>
