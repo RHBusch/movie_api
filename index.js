@@ -175,24 +175,6 @@ app.get('/movies',(req,res)=>{
         )
       });
 
-//Routing request to delete a user by username. ***(IN PROGRESS)***
-
-/*app.delete('/users/:username', (req,res)=>{
-        Users.findOneAndRemove ({Username: req.params.Username})
-        .then((user) => {
-            if (!user){
-                res.status(400).send(req.params.Username );
-            } else { 
-                res.status(200).send(req.params.Username );
-            }
-        })
-        .catch((err) = {
-            console.error(err);
-            res.status(500).send('Error: ' + err)
-        })
-    })*/
-
-
  //Potentially irrelevant code below? 
 
 //Creating an error doce if a response fails. 
