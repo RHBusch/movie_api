@@ -64,11 +64,10 @@
             <code><strong>Example:</strong>
               <br>
               {
-                "firstName": "Ted"<br>
-                "lastName": "Lasso"<br>
+                "username": "TLasso21" <br>
                 "Email": "TLasso21@gmail.com" <br>
                 "username": "TLasso21" <br>
-                "password": "HateNate21"<br>
+                "Birthday": "1993-12-25"<br>
               }
             </code>
         </td>
@@ -78,11 +77,10 @@
               <br>
               {
                 "_id":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d" <!-- Called by uuid module and created for each user automatically in response-->
-                "firstName": "Ted"<br>
-                "lastName": "Lasso"<br>
-                "Email": "TLasso21@gmail.com" <br>
                 "username": "TLasso21" <br>
+                "Email": "TLasso21@gmail.com" <br>
                 "password": "HateNate21"<br>
+                "Birthday": "1993-12-25"<br>
                 "favoriteMovies": []<br> <!-- Empty array because no favorite movies have been defined yet-->
               }
             </code>
@@ -93,13 +91,16 @@
         <td>Allow users to update their user info.</td>
         <td>PUT</td>
         <td>'/users/:Username'</td>
-        <td>Creating a JSON object w/ desired updated data and username as a confirmation from user. 
+        <td> A JSON object w/ desired updated data and username as a confirmation from user. 
           <br>
           <code><strong>Example:</strong>
             <br>
             {
               "username": "TLasso21" <br>
+              "Email": "TLasso21@gmail.com" <br>
               "password": "Kansas2London"<br>
+              "Birthday": "1993-12-25"<br>
+              "favoriteMovies": []<br>
             }
           </code>
         </td>
@@ -109,8 +110,6 @@
           <br>
           {
             "_id":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d" <br>
-            "firstName": "Ted"<br>
-            "lastName": "Lasso"<br>
             "Email": "TLasso21@gmail.com" <br>
             "username": "TLasso21" <br>
             "password": "Kansas2London"<br>
@@ -124,53 +123,50 @@
         <td>Allow users to add a movie to their list of favorites.</td>
         <td>POST</td>
         <td>'/users/:Username/movies/:MovieId'</td>
-        <td>JSON Object w/user information including new movies to add to their favorites.
-          <br>
-          <code><strong>Example:</strong>
+        <td>Adding a movieId to the url to add a new favorite movie. For example:
+          http://localhost:8080/users/RossTest/movies/61a36ee44c95362c52701d78
+        </td>
+        <td>Creating a JSON object including user info and the the added movie.
+            <br>
+            <code><strong>Example:</strong>
             <br>
             {
-              "firstName": "Ted"<br>
-              "lastName": "Lasso"<br>
-              "Email": "TLasso21@gmail.com" <br>
-              "username": "TLasso21" <br>
-              "password": "Kansas2London"<br>
-              "favoriteMovies": ["Random Movie"]<br>
-            }
-          </code>
-        </td>
-        <td>Creating a JSON object based on the added movie and returning confirmation text.
-            <br>
-            <strong>Example:</strong>
-            <br>
-            <p> "Another favorite movie was successfully added to your list."</p>
-        </td>
-      </tr>
+              "_id": "61a6d627e8b060b3bd9abaee",
+              "Username": "RossTest",
+              "Password": "RossTestPW",
+              "Email": "RossNewNew@gmail.com",
+              "FavoriteMovies": [
+                  "61a36ee44c95362c52701d78"
+              ],
+              "__v": 0,
+              "Birthday": "1973-12-30T00:00:00.000Z"
+          }
+            </code>
+          </td>
+         </tr>
 
       <tr>
         <td>Allow users to remove a movie from their list of favorites.</td>
         <td>DELETE</td>
         <td>'/users/:Username/remvmovies/:MovieId'</td>
-        <td>
+        <td> Adding a movieId to the url to remove a favorite movie. For example:
+          http://localhost:8080/users/RossTest/remvmovies/61a36ee44c95362c52701d78 </td>
+        <td>Returning a JSON object with user info and without the deleted movie in the parameter.
           <br>
           <code><strong>Example:</strong>
             <br>
-          {
-            "_id":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d" <br>
-            "firstName": "Ted"<br>
-            "lastName": "Lasso"<br>
-            "Email": "TLasso21@gmail.com" <br>
-            "username": "TLasso21" <br>
-            "password": "Kansas2London"<br>
-            "favoriteMovies": []<br>
+            {
+              "_id": "61a6d627e8b060b3bd9abaee",
+              "Username": "RossTest",
+              "Password": "RossTestPW",
+              "Email": "RossNewNew@gmail.com",
+              "FavoriteMovies": [ ],
+              "__v": 0,
+              "Birthday": "1973-12-30T00:00:00.000Z"
           }
-        </td>
-        <td>Removing a JSON object based on the deleted movie in the parameter and returning confirmation text.
-          <br>
-            <strong>Example:</strong>
-            <br>
-            <p> "A movie was successfully deleted from your list."</p>
-        </td>
-      </tr>
+            </code>
+          </td>
+         </tr>
 
       <tr>
         <td>Allow users to deregister.</td>
@@ -181,7 +177,7 @@
           <br>
             <strong>Example:</strong>
             <br>
-            <p> "You have successfully deregistered."</p>
+            <p> "(USERNAME) was deleted"</p>
         </td>
       </tr>
     </tbody>
