@@ -49,7 +49,7 @@ app.get('/movies',(req,res)=>{
       });
 
 
-//Routing requests for movies of a specific genre. ***(IN PROGRESS)***
+//Routing requests for movies of a specific genre. (WORKS CORRECTLY)
 
   app.get('/movies/genre/:Name',(req,res) =>{
     Movies.find({'Genre.Name': req.params.Name})
@@ -62,10 +62,10 @@ app.get('/movies',(req,res)=>{
     });  
   });
 
-//Routing reqeusts for movie data based on a single director. ***(IN PROGRESS)***
+//Routing reqeusts for movie data based on a single director. (WORKS CORRECTLY)
 
   app.get('/movies/director/:Name',(req,res) => {
-    Movies.find({"Director.Name": req.params.Name})
+    Movies.find({'Director.Name': req.params.Name})
     .then((directorName) =>{
         res.json(directorName);
     })
@@ -104,7 +104,7 @@ app.get('/movies',(req,res)=>{
 
   //Routing the update username request. ***(IN PROGRESS)*** 
 
-  app.put('/users/:username',(req,res) => {
+  app.put('/users/:Username',(req,res) => {
     Users.findOneAndUpdate({Username: req.params.Username},{$set:
         {
             Username: req.body.Username,
@@ -123,11 +123,11 @@ app.get('/movies',(req,res)=>{
     }); 
   });
 
-  //Routing request to add a movie to a user's list of favorites. ***(IN PROGRESS)***
+  //Routing request to add a movie to a user's list of favorites. (WORKS CORRECTLY)
 
-  app.post('/users/add/:movieTitle', (req,res) =>{
+  app.post('/users/:Username/movies/:MovieId', (req,res) =>{
       Users.findOneAndUpdate({Username: req.params.Username},{
-          $push: {FavoriteMovies: req.params.MovieID}
+          $push: {FavoriteMovies: req.params.MovieId}
       },
       {new: true},
       (err, updatedUser) => {
