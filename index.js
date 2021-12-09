@@ -140,15 +140,27 @@ app.get('/movies',(req,res)=>{
       });
   });
 
-  //Routing request to delete a movie from a user's list of favorites. ***(IN PROGRESS)***
+  //Routing request to delete a movie from a user's list of favorites. (WORKS CORRECTLY)
 
-  app.delete('/users/remove/:movieTitle', (req,res)=>{
-      res.send('Successful DELETE request removing a movie from a user\'s list of favorites')
+  app.delete('/users/:Username/remvmovies/:MovieId', (req,res)=>{
+      Users.findOneAndUpdate({Username: req.params.Username},{
+          $pull:{
+              FavoriteMovies: req.params.MovieId}
+          },
+          {new: true},
+          (err, removeFavMovie) => {
+              if (err){
+                  console.error(err);
+                  res.status(500).send('Error: ' + err);
+              }else{
+                  res.json(removeFavMovie);
+              }
+          });
   });
 
   //Routing a request to delete a user from the database. 
 
-  app.delete('/users/remv/:username',(req,res) =>{
+  app.delete('/users/remv/:Username',(req,res) =>{
       Users.findOneAndRemove({Username: req.params.Username})
         .then((user) => {
             if (!user) {
