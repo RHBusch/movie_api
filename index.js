@@ -102,7 +102,7 @@ app.get('/movies',(req,res)=>{
         })
     })
 
-  //Routing the update username request. ***(IN PROGRESS)*** 
+  //Routing the update username request. (WORKS CORRECTLY)
 
   app.put('/users/:Username',(req,res) => {
     Users.findOneAndUpdate({Username: req.params.Username},{$set:
@@ -116,12 +116,13 @@ app.get('/movies',(req,res)=>{
         {new: true},
         (err, updatedUser) => {
             if(err){
-                console.error(err);
+                console.error(err); 
                 res.status(500).send('Error: ' + err);
-            } else{res.json(updateUser);
+            } else {
+                res.json(updatedUser);
             }
-    }); 
-  });
+        });
+    });
 
   //Routing request to add a movie to a user's list of favorites. (WORKS CORRECTLY)
 
@@ -158,7 +159,7 @@ app.get('/movies',(req,res)=>{
           });
   });
 
-  //Routing a request to delete a user from the database. 
+  //Routing a request to delete a user from the database. (WORKS CORRECTLY)
 
   app.delete('/users/remv/:Username',(req,res) =>{
       Users.findOneAndRemove({Username: req.params.Username})
