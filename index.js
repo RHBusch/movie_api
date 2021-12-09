@@ -176,8 +176,6 @@ app.get('/movies',(req,res)=>{
         )
       });
 
- //Potentially irrelevant code below? 
-
 //Creating an error doce if a response fails. 
 app.use ((err,req,res,next) => {
     console.error (err.stack);
