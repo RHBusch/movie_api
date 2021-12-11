@@ -42,7 +42,8 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
    
 //Routing requests for a single movie. (WORKS CORRECTLY) 
 
-  app.get('/movies/:Title',(req,res) =>{
+  app.get('/movies/:Title', passport.authenticate('jwt',{session: false}),
+  (req,res) =>{
       Movies.findOne({Title: req.params.Title})
       .then((movie) =>{
           res.json(movie);
@@ -56,7 +57,8 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 
 //Routing requests for movies of a specific genre. (WORKS CORRECTLY)
 
-  app.get('/movies/genre/:Name',(req,res) =>{
+  app.get('/movies/genre/:Name',passport.authenticate('jwt',{session: false}),
+  (req,res) =>{
     Movies.find({'Genre.Name': req.params.Name})
     .then((genreType) =>{
         res.json(genreType);
@@ -69,7 +71,8 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 
 //Routing reqeusts for movie data based on a single director. (WORKS CORRECTLY)
 
-  app.get('/movies/director/:Name',(req,res) => {
+  app.get('/movies/director/:Name',passport.authenticate('jwt',{session: false}),
+  (req,res) =>{
     Movies.find({'Director.Name': req.params.Name})
     .then((directorName) =>{
         res.json(directorName);
@@ -84,7 +87,7 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 
   //Routing the new user registration request. (WORKS CORRECTLY) 
 
-  app.post('/users',(req,res) => {
+  app.post('/users',(req,res) =>{
       Users.findOne({Username: req.body.Username}).then(
           (user) =>{
               if(user){
@@ -109,7 +112,8 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 
   //Routing the update username request. (WORKS CORRECTLY)
 
-  app.put('/users/:Username',(req,res) => {
+  app.put('/users/:Username',passport.authenticate('jwt',{session: false}),
+  (req,res) =>{
     Users.findOneAndUpdate({Username: req.params.Username},{$set:
         {
             Username: req.body.Username,
@@ -131,7 +135,8 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 
   //Routing request to add a movie to a user's list of favorites. (WORKS CORRECTLY)
 
-  app.post('/users/:Username/movies/:MovieId', (req,res) =>{
+  app.post('/users/:Username/movies/:MovieId', passport.authenticate('jwt',{session: false}),
+  (req,res) =>{
       Users.findOneAndUpdate({Username: req.params.Username},{
           $push: {FavoriteMovies: req.params.MovieId}
       },
@@ -148,7 +153,8 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 
   //Routing request to delete a movie from a user's list of favorites. (WORKS CORRECTLY)
 
-  app.delete('/users/:Username/remvmovies/:MovieId', (req,res)=>{
+  app.delete('/users/:Username/remvmovies/:MovieId', passport.authenticate('jwt',{session: false}),
+  (req,res) =>{
       Users.findOneAndUpdate({Username: req.params.Username},{
           $pull:{
               FavoriteMovies: req.params.MovieId}
@@ -166,7 +172,8 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 
   //Routing a request to delete a user from the database. (WORKS CORRECTLY)
 
-  app.delete('/users/remv/:Username',(req,res) =>{
+  app.delete('/users/remv/:Username',passport.authenticate('jwt',{session: false}),
+  (req,res) =>{
       Users.findOneAndRemove({Username: req.params.Username})
         .then((user) => {
             if (!user) {
