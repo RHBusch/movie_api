@@ -35,6 +35,16 @@ let userSchema = mongoose.Schema({
     [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 });
 
+//Declaring a function to hash passwords submitted by users. 
+userSchema.statics.hashPassword = (password) => {
+    return bcrypt.hashSync(password, 10)
+};
+
+//Declaring a function compares submitted hashed passwords with other hashed passwords. 
+userSchema.methods.validatePassword = function (password) {
+    return bcrypt.compareSync(password, this.Password)
+};
+
 //Assigning variables Movie/User to their respective schemas. 
 
 let Movie = mongoose.model('Movie', movieSchema);
