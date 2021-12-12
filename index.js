@@ -1,4 +1,4 @@
-//Something is not connecting correctly with the new server code. 
+//Start by validating data on updating user info and adding movieID
 
 const express = require('express'), // Importing express
     morgan = require('morgan'), // Importing morgan 
@@ -17,6 +17,8 @@ useUnifiedTopology: true})
 const app = express (); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+const {check, validationResult} = require ('express-validator');
 
 const cors = require('cors');
 app.use(cors()); // This makes the app available to all requests.
@@ -91,7 +93,19 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 
   //Routing the new user registration request. (WORKS CORRECTLY) 
 
-  app.post('/users',(req,res) =>{
+  app.post('/users',[
+      check('Username','Username is required').isLength({min:5}),
+      check('Username', 'Username cannot contain non alphanumeric characters.').isAlphanumeric(),
+      check('Password','Password is required.').not().isEmpty(),
+      check('Email','Email does not appear to be valid.').isEmail()
+
+  ],
+
+  (req,res) =>{
+      let errors = validationResult(req);
+        if(!errors.isEmpty()){return res.status(422).json({errors: errors.array()
+     })
+         }
       let hashedPassword = Users.hashPassword(req.body.Password);
       Users.findOne({Username: req.body.Username}).then(
           (user) =>{
