@@ -19,8 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 const cors = require('cors');
-app.use(cors());
-
+app.use(cors()); // This makes the app available to all requests.
 
 
 let auth = require('./auth.js')(app);
@@ -93,13 +92,14 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
   //Routing the new user registration request. (WORKS CORRECTLY) 
 
   app.post('/users',(req,res) =>{
+      let hashedPassword = Users.hashPassword(req.body.Password);
       Users.findOne({Username: req.body.Username}).then(
           (user) =>{
               if(user){
                   return res.status(400).send(req.body.Username + 'already exists');
               } else {Users.create({
                   Username: req.body.Username,
-                  Password: req.body.Password, 
+                  Password: hashedPassword, 
                   Email: req.body.Email,
                   Birthday: req.body.Birthday
               })
