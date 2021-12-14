@@ -226,6 +226,11 @@ app.use ((err,req,res,next) => {
 });
 
 //Logging a message to the console when port 8080 is accessed. 
+const port = process.env.PORT || 8080;
+app.listen(port,'0.0.0.0',() => {
+    console.log('listening on Port ' + port)
+});
+
 app.listen(8080, () =>{
     console.log('Hey! FYI... This app is listening on port 8080...');
   });
