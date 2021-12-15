@@ -247,7 +247,7 @@ app.listen(8080, () =>{
  */
 /*
 
- mongoimport --uri mongodb+srv://willburgertest:willburgertestpw@clusterrb.4pinf.mongodb.net/myFlixDB --collection movies --type json --file /movielist.json
+ mongoimport --uri mongodb+srv://willburgertest:willburgertestpw@clusterrb.4pinf.mongodb.net/myFlixDB --collection movies --type json --file CareerFoundry/movie_api/movielist.json
 ^^^ Correct code - not correct file path. 
 
 
