@@ -240,3 +240,8 @@ app.listen(8080, () =>{
         res.send('What would Ted Lasso do?')
         }); 
     
+
+//Adding mongo import code to connect database to cluster. 
+/*
+ mongoimport --uri mongodb+srv://willburgertest:<willburgertestpw>@clusterrb.4pinf.mongodb.net/<myFlixDB> --collection <movies> --type <json> --file <>
+ */
