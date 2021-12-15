@@ -243,5 +243,5 @@ app.listen(8080, () =>{
 
 //Adding mongo import code to connect database to cluster. 
 /*
- mongoimport --uri mongodb+srv://willburgertest:<willburgertestpw>@clusterrb.4pinf.mongodb.net/<myFlixDB> --collection <movies> --type <json> --file <>
+ mongoimport --uri mongodb+srv://willburgertest:<willburgertestpw>@clusterrb.4pinf.mongodb.net/<myFlixDB> --collection <movies> --type <json> --file </movielist.json>
  */
