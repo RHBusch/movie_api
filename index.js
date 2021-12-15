@@ -1,4 +1,4 @@
-//Start by validating data on updating user info and adding movieID
+// Log back into Heroku + Mongo Atlas. Start by trying to connect the mongo import code below in terminal. Verify proper syntax and shell usage. 
 
 const express = require('express'), // Importing express
     morgan = require('morgan'), // Importing morgan 
@@ -244,4 +244,14 @@ app.listen(8080, () =>{
 //Adding mongo import code to connect database to cluster. 
 /*
  mongoimport --uri mongodb+srv://willburgertest:<willburgertestpw>@clusterrb.4pinf.mongodb.net/<myFlixDB> --collection <movies> --type <json> --file </movielist.json>
+ */
+/*
+
+ mongoimport --uri mongodb+srv://willburgertest:willburgertestpw@clusterrb.4pinf.mongodb.net/myFlixDB --collection movies --type json --file /movielist.json
+^^^ Correct code - not correct file path. 
+
+
+
+ mongoimport --uri mongodb+srv://myFlixDBadmin:12345@myflixdb.dcdfl.mongodb.net/myFlixDB --collection movies --type json --file ../exported_collections/movies.json
+
  */
