@@ -242,16 +242,11 @@ app.listen(8080, () =>{
     
 
 //Adding mongo import code to connect database to cluster. 
+
 /*
- mongoimport --uri mongodb+srv://willburgertest:<willburgertestpw>@clusterrb.4pinf.mongodb.net/<myFlixDB> --collection <movies> --type <json> --file </movielist.json>
- */
-/*
-
- mongoimport --uri mongodb+srv://willburgertest:willburgertestpw@clusterrb.4pinf.mongodb.net/myFlixDB --collection movies --type json --file CareerFoundry/movie_api/movielist.json
-^^^ Correct code - not correct file path. 
+ mongoimport --uri mongodb+srv://willburgertest:willburgertestpw@clusterrb.4pinf.mongodb.net/myFlixDB --collection movies --type json --file movie.json
+^^^ Correct code */
 
 
 
- mongoimport --uri mongodb+srv://myFlixDBadmin:12345@myflixdb.dcdfl.mongodb.net/myFlixDB --collection movies --type json --file ../exported_collections/movies.json
-
- */
+ 
