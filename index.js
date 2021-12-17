@@ -245,7 +245,7 @@ app.listen(8080, () =>{
 
 /*
  mongoimport --uri mongodb+srv://willburgertest:willburgertestpw@clusterrb.4pinf.mongodb.net/myFlixDB --collection movies --type json --file movie.json
-^^^ Correct code */
+^^^ Correct code file doesn't need a / before it because it's already in the root.*/
 
 
 
