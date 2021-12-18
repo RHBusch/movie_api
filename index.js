@@ -50,21 +50,6 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
         res.status(500).send('Error: '+ err);
     });
 });
-   
-//Routing requests for a single movie. (WORKS CORRECTLY) 
-
-  app.get('/movies/:Title', passport.authenticate('jwt',{session: false}),
-  (req,res) =>{
-      Movies.findOne({Title: req.params.Title})
-      .then((movie) =>{
-          res.json(movie);
-      })
-      .catch((err) =>{
-          console.error(err);
-          res.status(500).send('Error: ' + err);
-      });        
-      });
-
 
 //Routing requests for movies of a specific genre. (WORKS CORRECTLY)
 
@@ -83,6 +68,21 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
 //Routing reqeusts for movie data based on a single director. (WORKS CORRECTLY)
 
   app.get('/movies/director/:Name',passport.authenticate('jwt',{session: false}),
+  (req,res) =>{
+    Movies.find({'Director.Name': req.params.Name})
+    .then((directorName) =>{
+        res.json(directorName);
+    })
+    .catch((err) =>{
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });  
+
+});
+
+//Routing requests for ratings of a specific movie. 
+
+app.get('/movies/:/:Name',passport.authenticate('jwt',{session: false}),
   (req,res) =>{
     Movies.find({'Director.Name': req.params.Name})
     .then((directorName) =>{
@@ -236,13 +236,13 @@ app.listen(port,'0.0.0.0',() => {
     console.log('listening on Port ' + port)
 });
 
-app.listen(8080, () =>{
+/*app.listen(8080, () =>{
     console.log('Hey! FYI... This app is listening on port 8080...');
-  });
+  });*/
 
-  //Showing a message when any files with / are requested. More of a test than anything else. 
-    app.get('/',(req,res)=>{
-        res.send('What would Ted Lasso do?')
+  //Routing request for documentation.
+    app.get('/documentation',(req,res)=>{
+        res.sendFile('public/documentation.html',{root: __dirname})
         }); 
     
 
