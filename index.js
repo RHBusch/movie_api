@@ -239,7 +239,7 @@ app.listen(port,'0.0.0.0',() => {
   });*/
 
   //Routing request for documentation.
-    app.get('/',(req,res)=>{
+    app.get('/documentation',(req,res)=>{
         res.sendFile('public/documentation.html',{root: __dirname})
         }); 
     
