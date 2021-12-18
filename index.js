@@ -9,8 +9,13 @@ const express = require('express'), // Importing express
 const Movies = Models.Movie;
 const Users = Models.User;
 
+/*
 mongoose.connect('mongodb://localhost:27017/myFlixDB',{useNewUrlParser: true,
-useUnifiedTopology: true})
+useUnifiedTopology: true})*/
+
+mongoose.connect(process.env.CONNECTION_URI,{useNewUrlParser: true,
+useUnifiedTopology: true}) //Environment variable to guide credentials set via Heroku. 
+
 
 
 
