@@ -51,6 +51,20 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
     });
 });
 
+//Routing requests for a single movie. (WORKS CORRECTLY) 
+app.get('/movies/:Title', passport.authenticate('jwt',{session: false}),
+(req,res) =>{
+    Movies.findOne({Title: req.params.Title})
+    .then((movie) =>{
+        res.json(movie);
+    })
+    .catch((err) =>{
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });        
+    });
+
+
 //Routing requests for movies of a specific genre. (WORKS CORRECTLY)
 
   app.get('/movies/genre/:Name',passport.authenticate('jwt',{session: false}),
@@ -79,22 +93,6 @@ app.get('/movies', passport.authenticate('jwt',{session: false}),
     });  
 
 });
-
-//Routing requests for ratings of a specific movie. 
-
-app.get('/movies/:/:Name',passport.authenticate('jwt',{session: false}),
-  (req,res) =>{
-    Movies.find({'Director.Name': req.params.Name})
-    .then((directorName) =>{
-        res.json(directorName);
-    })
-    .catch((err) =>{
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-    });  
-
-});
-
 
   //Routing the new user registration request. (WORKS CORRECTLY) 
 
