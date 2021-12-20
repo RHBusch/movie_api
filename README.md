@@ -2,6 +2,8 @@
 
 This project created the server-side and database components of a web application that will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.
 
+Check out the project documentation [here](https://busch-movie-api.herokuapp.com/)! 
+
 ## Movie_API  (REST API) Technologies
 
 * Node JS.
