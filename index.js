@@ -39,8 +39,7 @@ app.use (express.static('public')); // Routing static file requests to the publi
 
 
 //Routing requests for all movies. (WORKS CORRECTLY)
-app.get('/movies', passport.authenticate('jwt',{session: false}),
-(req,res)=>{
+app.get('/movies', function (req, res) {
     Movies.find()
     .then((movies) => {
         res.status(201).json(movies);
