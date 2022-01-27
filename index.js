@@ -109,6 +109,7 @@ app.get('/movies/director/:Name', passport.authenticate('jwt', { session: false 
 
     });
 
+
 //Routing the new user registration request. (WORKS CORRECTLY) 
 
 app.post('/users', [
@@ -201,9 +202,6 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }),
                 res.status(500).send('Error:' + err);
             });
     });
-
-
-
 
 //Routing request to add a movie to a user's list of favorites. (WORKS CORRECTLY)
 
